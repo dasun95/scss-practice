@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #254875;
+}
+
+.title {
+  font-weight: 300;
+}
+
+.titleMin {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+}
+.main .main_paragraph {
+  color: #fff;
+  font-weight: 700;
+}
+.main .main_paragraph:hover {
+  color: #254875;
+}/*# sourceMappingURL=main.css.map */

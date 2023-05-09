@@ -1,0 +1,40 @@
+@import './resets'; // no need to add _ or extension to file name. 
+@import './variables';
+
+@function weight($weight-name){
+    @return map-get($font-weights,$weight-name );
+}
+
+@mixin flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background-color: $primary-color;
+}
+
+.title{
+    font-weight: map-get($font-weights,regular);
+}
+
+.titleMin{
+    font-size: 25px;
+    font-weight: map-get($font-weights,bold);
+}
+
+
+.main{
+    @include flex-center;
+    margin: 0 auto;
+    width: 80%;
+    #{&}_paragraph{
+        color: $text-color;
+        font-weight: weight(bold);
+
+        &:hover{
+            color: $primary-color;
+        }
+    }
+}
