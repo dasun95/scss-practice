@@ -5,10 +5,27 @@
     @return map-get($font-weights,$weight-name );
 }
 
-@mixin flex-center{
+@mixin flex-center($direction){
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin light-theme($light-theme:true){
+    @if $light-theme{
+        background: lighten($primary-color,100%);
+        color: darken($text-color,100%);
+    }@else{
+        background: darken($primary-color,100%);
+        color: lighten($text-color,100%);
+    }
+}
+
+@mixin mobile{
+    @media(max-width: $max-width-mobile) {
+        @content
+    }
 }
 
 body{
@@ -16,20 +33,23 @@ body{
 }
 
 .title{
+    text-align: center;
     font-weight: map-get($font-weights,regular);
 }
 
 .titleMin{
+    text-align: center;
     font-size: 25px;
     font-weight: map-get($font-weights,bold);
 }
 
 
 .main{
-    @include flex-center;
+    @include flex-center(raw);
     margin: 0 auto;
-    width: 80%;
-    #{&}_paragraph{
+    // width: 80%; same //as below
+    width: 100%-20%;
+    .first_paragraph{
         color: $text-color;
         font-weight: weight(bold);
 
@@ -37,4 +57,32 @@ body{
             color: $primary-color;
         }
     }
+
+    .second_paragraph{
+        @extend .first_paragraph;
+
+        &:hover{
+            color: yellow;
+        }
+    }
+
+    .third_paragraph{
+        @extend .first_paragraph;
+        &:hover{
+            color: rgb(0, 255, 106);
+        }
+    }
+
+    @include mobile{
+        flex-direction: column;
+    }
+}
+
+.light{
+    @include light-theme(true); //OR
+    // @include light-theme($light-theme:true); 
+}
+.dark{
+    @include light-theme(false); //OR
+    // @include light-theme($light-theme:false); 
 }
